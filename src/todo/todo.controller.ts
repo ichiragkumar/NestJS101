@@ -25,4 +25,10 @@ export class TodoController {
   getTodods(): Object {
     return this.todoService.getTodos();
   }
+
+
+  @Post('/add')
+  addTodo(@Body() userData : {name: string, email:string}): Object {
+    return this.todoService.createTodo(userData);
+  }
 }
