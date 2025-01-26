@@ -1,22 +1,28 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
+import { AppService } from '../app.service'; 
 import { TodoService } from './todo.service';
-import { get } from 'http';
 
 @Controller('todo')
 export class TodoController {
 
-    constructor(private readonly todoService: TodoService) {
+  constructor(
+    private readonly appService: AppService,
+    private readonly todoService: TodoService
 
-    }
+) {}
 
+  @Get('/alltodos')
+  getTodos(): string {
+    return this.appService.getData();
+  }
 
-    @Post("/create")
-    createTodo(@Body() body) {
-        return body;
-    }
+  @Get('/notes')
+  getNotes(): string {
+    return 'All notes';
+  }
 
-    @Get("/alltodos")
-    allTodos() {
-        return this.todoService.getTodos();
-    }
+  @Get("/gettodods")
+  getTodods(): Object {
+    return this.todoService.getTodos();
+  }
 }
