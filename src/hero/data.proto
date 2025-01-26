@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package data;
+
+service DataService {
+  rpc GetDataStream (Empty) returns (stream Data);
+}
+
+message Empty {}
+
+message Data {
+  string id = 1;
+  string name = 2;
+  string value = 3;
+}
